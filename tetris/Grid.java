@@ -1,5 +1,3 @@
-package com.example.tetris;
-
 import java.util.Random;
 
 public class Grid {
