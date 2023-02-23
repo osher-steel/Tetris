@@ -1,5 +1,3 @@
-package com.example.tetris;
-
 import javax.swing.*;
 import java.awt.*;
 
