@@ -1,5 +1,3 @@
-package com.example.tetris;
-
 import java.awt.*;
 
 public final class Utils {
