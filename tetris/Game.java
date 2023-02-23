@@ -1,4 +1,3 @@
-package com.example.tetris;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -8,6 +7,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.net.URISyntaxException;
 import java.nio.file.Paths;
 
 public class Game extends JPanel implements Runnable, KeyListener, MouseListener {
@@ -42,16 +42,14 @@ public class Game extends JPanel implements Runnable, KeyListener, MouseListener
         levelDisplay="Level: 1";
         restart=false;
 
-        try {
-            bufferedReader= new BufferedReader( new FileReader("highscore.txt"));
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
 
+        InputStream is=getClass().getResourceAsStream("highscore.txt");
+        InputStreamReader isr= new InputStreamReader(is);
+        bufferedReader= new BufferedReader(isr);
 
         BufferedImage gameOver;
         try {
-            gameOver =ImageIO.read(new File(Paths.get("","images","gameOver.png").toString()));
+            gameOver =ImageIO.read(getClass().getResourceAsStream("gameOver.png"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -127,7 +125,7 @@ public class Game extends JPanel implements Runnable, KeyListener, MouseListener
 
     @Override
     public void run() {
-            grid.addBlock();
+        grid.addBlock();
 
         while(true){
             repaint();
@@ -169,7 +167,7 @@ public class Game extends JPanel implements Runnable, KeyListener, MouseListener
         repaint();
         if(initialHighScore< playerStats.score){
             try {
-                BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("highscore.txt"));
+                BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("files/highscore.txt"));
                 bufferedWriter.write(String.valueOf(playerStats.score));
                 bufferedWriter.close();
             } catch (IOException e) {
