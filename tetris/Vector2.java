@@ -1,5 +1,3 @@
-package com.example.tetris;
-
 public class Vector2
 {
     // Members
