@@ -1,5 +1,3 @@
-package com.example.tetris;
-
 public class PlayerStats {
     public int score;
     public int level;
